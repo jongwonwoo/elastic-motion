@@ -1,0 +1,482 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0C6CF08F1C96C1C6005ACDCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF08E1C96C1C6005ACDCE /* AppDelegate.swift */; };
+		0C6CF0911C96C1C6005ACDCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0901C96C1C6005ACDCE /* ViewController.swift */; };
+		0C6CF0941C96C1C6005ACDCE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0921C96C1C6005ACDCE /* Main.storyboard */; };
+		0C6CF0961C96C1C6005ACDCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0951C96C1C6005ACDCE /* Assets.xcassets */; };
+		0C6CF0991C96C1C6005ACDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */; };
+		0C6CF0A41C96C1C6005ACDCE /* ElasticMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */; };
+		1D58488D4A7750E66184CC53 /* Pods_ElasticMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		0C6CF0A01C96C1C6005ACDCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0C6CF0831C96C1C6005ACDCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 0C6CF08A1C96C1C6005ACDCE;
+			remoteInfo = ElasticMotion;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0C6CF08B1C96C1C6005ACDCE /* ElasticMotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElasticMotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C6CF08E1C96C1C6005ACDCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		0C6CF0901C96C1C6005ACDCE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0C6CF0931C96C1C6005ACDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		0C6CF0951C96C1C6005ACDCE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		0C6CF0981C96C1C6005ACDCE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		0C6CF09A1C96C1C6005ACDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C6CF09F1C96C1C6005ACDCE /* ElasticMotionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElasticMotionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElasticMotionTests.swift; sourceTree = "<group>"; };
+		0C6CF0A51C96C1C6005ACDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElasticMotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		52058931238E2067C9C03F25 /* Pods-ElasticMotion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.release.xcconfig"; sourceTree = "<group>"; };
+		9628AE6B5597EA8B7C155082 /* Pods-ElasticMotion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		0C6CF0881C96C1C6005ACDCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D58488D4A7750E66184CC53 /* Pods_ElasticMotion.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C6CF09C1C96C1C6005ACDCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0C6CF0821C96C1C6005ACDCE = {
+			isa = PBXGroup;
+			children = (
+				0C6CF08D1C96C1C6005ACDCE /* ElasticMotion */,
+				0C6CF0A21C96C1C6005ACDCE /* ElasticMotionTests */,
+				0C6CF08C1C96C1C6005ACDCE /* Products */,
+				ED67F3560EAD19EDB4FE7ED5 /* Pods */,
+				0D2E189677F5DAB5E286C0FB /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		0C6CF08C1C96C1C6005ACDCE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				0C6CF08B1C96C1C6005ACDCE /* ElasticMotion.app */,
+				0C6CF09F1C96C1C6005ACDCE /* ElasticMotionTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0C6CF08D1C96C1C6005ACDCE /* ElasticMotion */ = {
+			isa = PBXGroup;
+			children = (
+				0C6CF08E1C96C1C6005ACDCE /* AppDelegate.swift */,
+				0C6CF0901C96C1C6005ACDCE /* ViewController.swift */,
+				0C6CF0921C96C1C6005ACDCE /* Main.storyboard */,
+				0C6CF0951C96C1C6005ACDCE /* Assets.xcassets */,
+				0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */,
+				0C6CF09A1C96C1C6005ACDCE /* Info.plist */,
+			);
+			path = ElasticMotion;
+			sourceTree = "<group>";
+		};
+		0C6CF0A21C96C1C6005ACDCE /* ElasticMotionTests */ = {
+			isa = PBXGroup;
+			children = (
+				0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */,
+				0C6CF0A51C96C1C6005ACDCE /* Info.plist */,
+			);
+			path = ElasticMotionTests;
+			sourceTree = "<group>";
+		};
+		0D2E189677F5DAB5E286C0FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ED67F3560EAD19EDB4FE7ED5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9628AE6B5597EA8B7C155082 /* Pods-ElasticMotion.debug.xcconfig */,
+				52058931238E2067C9C03F25 /* Pods-ElasticMotion.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		0C6CF08A1C96C1C6005ACDCE /* ElasticMotion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C6CF0A81C96C1C6005ACDCE /* Build configuration list for PBXNativeTarget "ElasticMotion" */;
+			buildPhases = (
+				557FDC6B69E5E0C4C0336E67 /* Check Pods Manifest.lock */,
+				0C6CF0871C96C1C6005ACDCE /* Sources */,
+				0C6CF0881C96C1C6005ACDCE /* Frameworks */,
+				0C6CF0891C96C1C6005ACDCE /* Resources */,
+				6CABB9B0BF31C182498D047B /* Embed Pods Frameworks */,
+				3D636A4F160D9D796C73A7F0 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ElasticMotion;
+			productName = ElasticMotion;
+			productReference = 0C6CF08B1C96C1C6005ACDCE /* ElasticMotion.app */;
+			productType = "com.apple.product-type.application";
+		};
+		0C6CF09E1C96C1C6005ACDCE /* ElasticMotionTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 0C6CF0AB1C96C1C6005ACDCE /* Build configuration list for PBXNativeTarget "ElasticMotionTests" */;
+			buildPhases = (
+				0C6CF09B1C96C1C6005ACDCE /* Sources */,
+				0C6CF09C1C96C1C6005ACDCE /* Frameworks */,
+				0C6CF09D1C96C1C6005ACDCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				0C6CF0A11C96C1C6005ACDCE /* PBXTargetDependency */,
+			);
+			name = ElasticMotionTests;
+			productName = ElasticMotionTests;
+			productReference = 0C6CF09F1C96C1C6005ACDCE /* ElasticMotionTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0C6CF0831C96C1C6005ACDCE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = jongwonwoo;
+				TargetAttributes = {
+					0C6CF08A1C96C1C6005ACDCE = {
+						CreatedOnToolsVersion = 7.2.1;
+					};
+					0C6CF09E1C96C1C6005ACDCE = {
+						CreatedOnToolsVersion = 7.2.1;
+						TestTargetID = 0C6CF08A1C96C1C6005ACDCE;
+					};
+				};
+			};
+			buildConfigurationList = 0C6CF0861C96C1C6005ACDCE /* Build configuration list for PBXProject "ElasticMotion" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 0C6CF0821C96C1C6005ACDCE;
+			productRefGroup = 0C6CF08C1C96C1C6005ACDCE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				0C6CF08A1C96C1C6005ACDCE /* ElasticMotion */,
+				0C6CF09E1C96C1C6005ACDCE /* ElasticMotionTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		0C6CF0891C96C1C6005ACDCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C6CF0991C96C1C6005ACDCE /* LaunchScreen.storyboard in Resources */,
+				0C6CF0961C96C1C6005ACDCE /* Assets.xcassets in Resources */,
+				0C6CF0941C96C1C6005ACDCE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C6CF09D1C96C1C6005ACDCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3D636A4F160D9D796C73A7F0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		557FDC6B69E5E0C4C0336E67 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6CABB9B0BF31C182498D047B /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0C6CF0871C96C1C6005ACDCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C6CF0911C96C1C6005ACDCE /* ViewController.swift in Sources */,
+				0C6CF08F1C96C1C6005ACDCE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		0C6CF09B1C96C1C6005ACDCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0C6CF0A41C96C1C6005ACDCE /* ElasticMotionTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		0C6CF0A11C96C1C6005ACDCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 0C6CF08A1C96C1C6005ACDCE /* ElasticMotion */;
+			targetProxy = 0C6CF0A01C96C1C6005ACDCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		0C6CF0921C96C1C6005ACDCE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C6CF0931C96C1C6005ACDCE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0C6CF0981C96C1C6005ACDCE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		0C6CF0A61C96C1C6005ACDCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		0C6CF0A71C96C1C6005ACDCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		0C6CF0A91C96C1C6005ACDCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9628AE6B5597EA8B7C155082 /* Pods-ElasticMotion.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ElasticMotion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jongwonwoo.ElasticMotion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		0C6CF0AA1C96C1C6005ACDCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52058931238E2067C9C03F25 /* Pods-ElasticMotion.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ElasticMotion/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jongwonwoo.ElasticMotion;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		0C6CF0AC1C96C1C6005ACDCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ElasticMotionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jongwonwoo.ElasticMotionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElasticMotion.app/ElasticMotion";
+			};
+			name = Debug;
+		};
+		0C6CF0AD1C96C1C6005ACDCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ElasticMotionTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jongwonwoo.ElasticMotionTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ElasticMotion.app/ElasticMotion";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		0C6CF0861C96C1C6005ACDCE /* Build configuration list for PBXProject "ElasticMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C6CF0A61C96C1C6005ACDCE /* Debug */,
+				0C6CF0A71C96C1C6005ACDCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C6CF0A81C96C1C6005ACDCE /* Build configuration list for PBXNativeTarget "ElasticMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C6CF0A91C96C1C6005ACDCE /* Debug */,
+				0C6CF0AA1C96C1C6005ACDCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		0C6CF0AB1C96C1C6005ACDCE /* Build configuration list for PBXNativeTarget "ElasticMotionTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0C6CF0AC1C96C1C6005ACDCE /* Debug */,
+				0C6CF0AD1C96C1C6005ACDCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0C6CF0831C96C1C6005ACDCE /* Project object */;
+}

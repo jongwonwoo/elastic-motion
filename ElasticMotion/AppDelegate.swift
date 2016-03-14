@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  ElasticMotion
 //
-//  Created by 1000985 on 2016. 3. 14..
+//  Created by jongwon woo on 2016. 3. 14..
 //  Copyright © 2016년 jongwonwoo. All rights reserved.
 //
 

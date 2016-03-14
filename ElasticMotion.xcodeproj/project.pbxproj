@@ -13,6 +13,7 @@
 		0C6CF0961C96C1C6005ACDCE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0951C96C1C6005ACDCE /* Assets.xcassets */; };
 		0C6CF0991C96C1C6005ACDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */; };
 		0C6CF0A41C96C1C6005ACDCE /* ElasticMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */; };
+		0C6CF0B11C96CD6F005ACDCE /* ElasticMotionStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */; };
 		1D58488D4A7750E66184CC53 /* Pods_ElasticMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,7 @@
 		0C6CF09F1C96C1C6005ACDCE /* ElasticMotionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ElasticMotionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElasticMotionTests.swift; sourceTree = "<group>"; };
 		0C6CF0A51C96C1C6005ACDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticMotionStateMachine.swift; sourceTree = "<group>"; };
 		29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElasticMotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52058931238E2067C9C03F25 /* Pods-ElasticMotion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.release.xcconfig"; sourceTree = "<group>"; };
 		9628AE6B5597EA8B7C155082 /* Pods-ElasticMotion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.debug.xcconfig"; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				0C6CF0951C96C1C6005ACDCE /* Assets.xcassets */,
 				0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */,
 				0C6CF09A1C96C1C6005ACDCE /* Info.plist */,
+				0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */,
 			);
 			path = ElasticMotion;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 			files = (
 				0C6CF0911C96C1C6005ACDCE /* ViewController.swift in Sources */,
 				0C6CF08F1C96C1C6005ACDCE /* AppDelegate.swift in Sources */,
+				0C6CF0B11C96CD6F005ACDCE /* ElasticMotionStateMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

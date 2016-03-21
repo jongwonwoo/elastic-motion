@@ -25,13 +25,25 @@ enum ElasticMotionState {
     case WillClose
 }
 
+protocol ElasticMotionStateMachineDelegate {
+    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState :ElasticMotionState, deltaPoint:CGPoint)
+}
+
 class ElasticMotionStateMachine {
     private var direction = ElasticMotionDirection.Right
-    private var state = ElasticMotionState.Closed
+    internal private(set) var state: ElasticMotionState = .Closed {
+        didSet {
+            print("didSet:\(self.state), \(self.totalMovingPoint)")
+            self.delegate?.elasticMotionStateMachine(self, didChangeState: self.state, deltaPoint: self.deltaPoint)
+        }
+    }
     private var criticalPoint = Float(0)
     private var beginPoint = CGPointZero
     private var deltaPoint = CGPointZero
+    private var totalMovingPoint = CGPointZero
     private var vibrationSec = Double(2)
+    
+    var delegate: ElasticMotionStateMachineDelegate?
     
     init(_ direction: ElasticMotionDirection, criticalPoint:Float, vibrationSec:Double) {
         self.direction = direction
@@ -39,16 +51,12 @@ class ElasticMotionStateMachine {
         self.vibrationSec = vibrationSec
     }
     
-    func getState() -> ElasticMotionState {
-        return self.state
-    }
-    
     // 어디에서부터든 움직이기 시작하면 may*로 바뀐다.
     // 시작 위치에서 cp 보다 움직이면 will*로 바뀐다.
     // will로 바뀌고 일정시간 후에는 did로 바뀐다.
     func setPoint(point: CGPoint, delta: CGPoint) {
-        print("current state:\(self.state)")
-        self.sumDeltaPoint(delta)
+        self.deltaPoint = delta
+        self.sumMovingPoint(delta)
         
         switch self.state {
         case .Closed, .Opened:
@@ -57,14 +65,16 @@ class ElasticMotionStateMachine {
         case .MayOpen, .MayClose:
             if self.isOverCriticalPoint() {
                 self.moveNextState()
+            } else {
+                self.stayCurrentState()
             }
         default:
             break
         }
     }
     
-    func sumDeltaPoint(delta: CGPoint) {
-        self.deltaPoint = CGPointMake(self.deltaPoint.x+delta.x, self.deltaPoint.y+delta.y)
+    func sumMovingPoint(delta: CGPoint) {
+        self.totalMovingPoint = CGPointMake(self.totalMovingPoint.x+delta.x, self.totalMovingPoint.y+delta.y)
     }
     
     func isOverCriticalPoint() -> Bool {
@@ -78,6 +88,11 @@ class ElasticMotionStateMachine {
         }
         
         return result
+    }
+    
+    func stayCurrentState() {
+        let currentState = self.state
+        self.state = currentState
     }
     
     func moveNextState() {
@@ -101,7 +116,5 @@ class ElasticMotionStateMachine {
         case .WillClose:
             self.state = .Closed
         }
-        
-        print("current state:\(self.state)")
     }
 }

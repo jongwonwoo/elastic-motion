@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    let stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, criticalPoint:5.0)
+    let stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, criticalPoint: 5.0, vibrationSec: 2.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()

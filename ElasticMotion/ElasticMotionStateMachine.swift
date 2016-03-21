@@ -31,10 +31,12 @@ class ElasticMotionStateMachine {
     private var criticalPoint = Float(0)
     private var beginPoint = CGPointZero
     private var deltaPoint = CGPointZero
+    private var vibrationSec = Double(2)
     
-    init(_ direction: ElasticMotionDirection, criticalPoint:Float) {
+    init(_ direction: ElasticMotionDirection, criticalPoint:Float, vibrationSec:Double) {
         self.direction = direction
         self.criticalPoint = criticalPoint
+        self.vibrationSec = vibrationSec
     }
     
     func getState() -> ElasticMotionState {
@@ -84,8 +86,8 @@ class ElasticMotionStateMachine {
             self.state = .MayOpen
         case .MayOpen:
             self.state = .WillOpen
-            // TODO: 몇 초 후
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))
             dispatch_after(time, dispatch_get_main_queue(), moveNextState)
         case .WillOpen:
             self.state = .Opened
@@ -93,8 +95,8 @@ class ElasticMotionStateMachine {
             self.state = .MayClose
         case .MayClose:
             self.state = .WillClose
-            // TODO
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(2.0 * Double(NSEC_PER_SEC)))
+
+            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))
             dispatch_after(time, dispatch_get_main_queue(), moveNextState)
         case .WillClose:
             self.state = .Closed

@@ -82,9 +82,9 @@ class ElasticMotionStateMachine {
         
         switch self.direction {
         case .Left, .Right:
-            result = Float(self.deltaPoint.x) > self.criticalPoint
+            result = Float(self.totalMovingPoint.x) > self.criticalPoint
         case .Top, .Bottom:
-            result = Float(self.deltaPoint.y) > self.criticalPoint
+            result = Float(self.totalMovingPoint.y) > self.criticalPoint
         }
         
         return result

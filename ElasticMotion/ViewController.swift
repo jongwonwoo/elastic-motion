@@ -38,7 +38,7 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
 
 
     func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState: ElasticMotionState, deltaPoint: CGPoint) {
-        print("\(didChangeState), \(deltaPoint)")
+
     }
 }
 

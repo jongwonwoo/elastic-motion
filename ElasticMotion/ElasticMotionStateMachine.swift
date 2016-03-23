@@ -34,7 +34,7 @@ class ElasticMotionStateMachine {
     internal private(set) var state: ElasticMotionState = .Closed {
         didSet {
             self.delegate?.elasticMotionStateMachine(self, didChangeState: self.state, deltaPoint: self.deltaPoint)
-            print("setState:\(self.state), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
+//            print("setState:\(self.state), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
             
             if self.state == .Closed || self.state == .Opened {
                 self.deltaPoint = CGPointZero
@@ -59,14 +59,16 @@ class ElasticMotionStateMachine {
     func setCurrentPoint(point: CGPoint) {
         if self.state == .Closed || self.state == .WillClose || self.state == .Opened || self.state == .WillOpen {
             self.beginPoint = point
+            self.totalMovingPoint = CGPointZero
         }
         
         let delta = self.deltaPointFromCurrentPoint(point)
         self.addMovingPoint(delta)
         
+        print("setPoint:\(self.state), current:\(point), begin:\(self.beginPoint), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
+        
         self.changeState()
 
-        print("setPoint:\(self.state), current:\(point), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
     }
     
     func deltaPointFromCurrentPoint(currentPoint: CGPoint) -> CGPoint {
@@ -88,32 +90,25 @@ class ElasticMotionStateMachine {
         self.totalMovingPoint = CGPointMake(self.totalMovingPoint.x + delta.x, self.totalMovingPoint.y + delta.y)
     }
     
-    private func isRightDirection(deltaPoint: CGPoint) -> Bool {
-        var result = false
-        
-        switch self.direction {
-        case .Right:
-            if self.state == .Closed {
-                result = deltaPoint.x > 0
-            } else if self.state == .Opened {
-                result = deltaPoint.x < 0
-            }
-            //TODO
-        default:
-            break
-        }
-        
-        return result
-    }
-    
     private func isOverCriticalPoint() -> Bool {
         var result = false
         
         switch self.direction {
-        case .Left, .Right:
-            result = abs(Float(self.totalMovingPoint.x)) > self.criticalPoint
-        case .Top, .Bottom:
-            result = abs(Float(self.totalMovingPoint.y)) > self.criticalPoint
+        case .Left:
+            //TODO
+            result = Float(self.totalMovingPoint.x) > self.criticalPoint
+        case .Right:
+            if self.state == .MayOpen {
+                result = Float(self.totalMovingPoint.x) > self.criticalPoint
+            } else if self.state == .MayClose {
+                result = -(Float(self.totalMovingPoint.x)) > self.criticalPoint
+            }
+        case .Top:
+            //TODO
+            result = Float(self.totalMovingPoint.y) > self.criticalPoint
+        case .Bottom:
+            //TODO
+            result = Float(self.totalMovingPoint.y) > self.criticalPoint
         }
         
         return result

@@ -33,8 +33,13 @@ class ElasticMotionStateMachine {
     private var direction = ElasticMotionDirection.Right
     internal private(set) var state: ElasticMotionState = .Closed {
         didSet {
-            print("didSet:\(self.state), \(self.totalMovingPoint)")
             self.delegate?.elasticMotionStateMachine(self, didChangeState: self.state, deltaPoint: self.deltaPoint)
+            print("setState:\(self.state), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
+            
+            if self.state == .Closed || self.state == .Opened {
+                self.deltaPoint = CGPointZero
+                self.totalMovingPoint = CGPointZero
+            }
         }
     }
     private var criticalPoint = Float(0)
@@ -51,20 +56,83 @@ class ElasticMotionStateMachine {
         self.vibrationSec = vibrationSec
     }
     
+    func setCurrentPoint(point: CGPoint) {
+        if self.state == .Closed || self.state == .WillClose || self.state == .Opened || self.state == .WillOpen {
+            self.beginPoint = point
+        }
+        
+        let delta = self.deltaPointFromCurrentPoint(point)
+        self.addMovingPoint(delta)
+        
+        self.changeState()
+
+        print("setPoint:\(self.state), current:\(point), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
+    }
+    
+    func deltaPointFromCurrentPoint(currentPoint: CGPoint) -> CGPoint {
+        self.deltaPoint = CGPointMake(currentPoint.x - self.beginPoint.x - self.totalMovingPoint.x, currentPoint.y - self.beginPoint.y - self.totalMovingPoint.y)
+        
+        return self.deltaPoint
+    }
+    
+    func stop() {
+        switch self.state {
+        case .MayOpen, .MayClose:
+            self.movePreviousState()
+        default:
+            break
+        }
+    }
+    
+    private func addMovingPoint(delta: CGPoint) {
+        self.totalMovingPoint = CGPointMake(self.totalMovingPoint.x + delta.x, self.totalMovingPoint.y + delta.y)
+    }
+    
+    private func isRightDirection(deltaPoint: CGPoint) -> Bool {
+        var result = false
+        
+        switch self.direction {
+        case .Right:
+            if self.state == .Closed {
+                result = deltaPoint.x > 0
+            } else if self.state == .Opened {
+                result = deltaPoint.x < 0
+            }
+            //TODO
+        default:
+            break
+        }
+        
+        return result
+    }
+    
+    private func isOverCriticalPoint() -> Bool {
+        var result = false
+        
+        switch self.direction {
+        case .Left, .Right:
+            result = abs(Float(self.totalMovingPoint.x)) > self.criticalPoint
+        case .Top, .Bottom:
+            result = abs(Float(self.totalMovingPoint.y)) > self.criticalPoint
+        }
+        
+        return result
+    }
+    
     // 어디에서부터든 움직이기 시작하면 may*로 바뀐다.
     // 시작 위치에서 cp 보다 움직이면 will*로 바뀐다.
     // will로 바뀌고 일정시간 후에는 did로 바뀐다.
-    func setPoint(point: CGPoint, delta: CGPoint) {
-        self.deltaPoint = delta
-        self.sumMovingPoint(delta)
-        
+    private func changeState() {
         switch self.state {
         case .Closed, .Opened:
-            self.beginPoint = point
+            //TODO: check direction
             self.moveNextState()
         case .MayOpen, .MayClose:
             if self.isOverCriticalPoint() {
                 self.moveNextState()
+                
+                let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))
+                dispatch_after(time, dispatch_get_main_queue(), moveNextState)
             } else {
                 self.stayCurrentState()
             }
@@ -73,48 +141,36 @@ class ElasticMotionStateMachine {
         }
     }
     
-    func sumMovingPoint(delta: CGPoint) {
-        self.totalMovingPoint = CGPointMake(self.totalMovingPoint.x+delta.x, self.totalMovingPoint.y+delta.y)
-    }
-    
-    func isOverCriticalPoint() -> Bool {
-        var result = false
-        
-        switch self.direction {
-        case .Left, .Right:
-            result = Float(self.totalMovingPoint.x) > self.criticalPoint
-        case .Top, .Bottom:
-            result = Float(self.totalMovingPoint.y) > self.criticalPoint
-        }
-        
-        return result
-    }
-    
-    func stayCurrentState() {
+    private func stayCurrentState() {
         let currentState = self.state
         self.state = currentState
     }
     
-    func moveNextState() {
+    private func moveNextState() {
         switch self.state {
         case .Closed:
             self.state = .MayOpen
         case .MayOpen:
             self.state = .WillOpen
-
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))
-            dispatch_after(time, dispatch_get_main_queue(), moveNextState)
         case .WillOpen:
             self.state = .Opened
         case .Opened:
             self.state = .MayClose
         case .MayClose:
             self.state = .WillClose
-
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))
-            dispatch_after(time, dispatch_get_main_queue(), moveNextState)
         case .WillClose:
             self.state = .Closed
+        }
+    }
+    
+    private func movePreviousState() {
+        switch self.state {
+        case .MayOpen:
+            self.state = .Closed
+        case .MayClose:
+            self.state = .Opened
+        default:
+            break
         }
     }
 }

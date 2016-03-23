@@ -37,8 +37,31 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
     }
 
 
-    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState: ElasticMotionState, deltaPoint: CGPoint) {
-
+    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state: ElasticMotionState, deltaPoint: CGPoint) {
+        if stateMachine.direction == ElasticMotionDirection.Right {
+            let fullOpenedWidth = CGFloat(stateMachine.criticalPoint) * 2
+            switch state {
+            case .MayOpen:
+                let newOriginX = self.view.frame.origin.x + deltaPoint.x
+                if newOriginX >= 0 && newOriginX < CGFloat(stateMachine.criticalPoint) {
+                    self.view.center = CGPointMake(self.view.center.x + deltaPoint.x, self.view.center.y)
+                }
+            case .MayClose:
+                let newOriginX = self.view.frame.origin.x + deltaPoint.x
+                if newOriginX >= 0 && newOriginX < fullOpenedWidth {
+                    self.view.center = CGPointMake(self.view.center.x + deltaPoint.x, self.view.center.y)
+                }
+            case .WillClose:
+                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(stateMachine.criticalPoint), self.view.center.y)
+            case .Closed:
+                self.view.center = CGPointMake(self.view.frame.width / 2, self.view.center.y)
+            case .WillOpen:
+                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(stateMachine.criticalPoint), self.view.center.y)
+            case .Opened:
+                self.view.center = CGPointMake(self.view.frame.width / 2 + fullOpenedWidth, self.view.center.y)
+            }
+        }
+        // TODO other directions
     }
     
     @IBAction func handlePan(recognizer: UIPanGestureRecognizer) {

@@ -26,11 +26,11 @@ enum ElasticMotionState {
 }
 
 protocol ElasticMotionStateMachineDelegate {
-    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState :ElasticMotionState, deltaPoint:CGPoint)
+    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state:ElasticMotionState, deltaPoint:CGPoint)
 }
 
 class ElasticMotionStateMachine {
-    private var direction = ElasticMotionDirection.Right
+    internal private(set) var direction = ElasticMotionDirection.Right
     internal private(set) var state: ElasticMotionState = .Closed {
         didSet {
             self.delegate?.elasticMotionStateMachine(self, didChangeState: self.state, deltaPoint: self.deltaPoint)
@@ -42,7 +42,7 @@ class ElasticMotionStateMachine {
             }
         }
     }
-    private var criticalPoint = Float(0)
+    internal private(set) var criticalPoint = Float(0)
     private var beginPoint = CGPointZero
     private var deltaPoint = CGPointZero
     private var totalMovingPoint = CGPointZero
@@ -120,7 +120,6 @@ class ElasticMotionStateMachine {
     private func changeState() {
         switch self.state {
         case .Closed, .Opened:
-            //TODO: check direction
             self.moveNextState()
         case .MayOpen, .MayClose:
             if self.isOverCriticalPoint() {

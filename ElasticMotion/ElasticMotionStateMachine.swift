@@ -50,40 +50,42 @@ class ElasticMotionStateMachine {
     
     var delegate: ElasticMotionStateMachineDelegate?
     
+    // MARK: - public functions
     init(_ direction: ElasticMotionDirection, criticalPoint:Float, vibrationSec:Double) {
         self.direction = direction
         self.criticalPoint = criticalPoint
         self.vibrationSec = vibrationSec
     }
     
-    func setCurrentPoint(point: CGPoint) {
+    func keepMoving(currentPoint: CGPoint) {
         if self.state == .Closed || self.state == .WillClose || self.state == .Opened || self.state == .WillOpen {
-            self.beginPoint = point
+            self.beginPoint = currentPoint
             self.totalMovingPoint = CGPointZero
         }
         
-        let delta = self.deltaPointFromCurrentPoint(point)
+        let delta = self.deltaPointFromCurrentPoint(currentPoint)
         self.addMovingPoint(delta)
         
-        print("setPoint:\(self.state), current:\(point), begin:\(self.beginPoint), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
+        print("setPoint:\(self.state), current:\(currentPoint), begin:\(self.beginPoint), total:\(self.totalMovingPoint), delta:\(self.deltaPoint)")
         
         self.changeState()
 
     }
     
-    func deltaPointFromCurrentPoint(currentPoint: CGPoint) -> CGPoint {
-        self.deltaPoint = CGPointMake(currentPoint.x - self.beginPoint.x - self.totalMovingPoint.x, currentPoint.y - self.beginPoint.y - self.totalMovingPoint.y)
-        
-        return self.deltaPoint
-    }
-    
-    func stop() {
+    func stopMoving() {
         switch self.state {
         case .MayOpen, .MayClose:
             self.movePreviousState()
         default:
             break
         }
+    }
+
+    //MARK: - about point
+    private func deltaPointFromCurrentPoint(currentPoint: CGPoint) -> CGPoint {
+        self.deltaPoint = CGPointMake(currentPoint.x - self.beginPoint.x - self.totalMovingPoint.x, currentPoint.y - self.beginPoint.y - self.totalMovingPoint.y)
+        
+        return self.deltaPoint
     }
     
     private func addMovingPoint(delta: CGPoint) {
@@ -113,6 +115,8 @@ class ElasticMotionStateMachine {
         
         return result
     }
+    
+    // MARK: - state
     
     // 어디에서부터든 움직이기 시작하면 may*로 바뀐다.
     // 시작 위치에서 cp 보다 움직이면 will*로 바뀐다.

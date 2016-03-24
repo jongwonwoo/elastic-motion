@@ -70,11 +70,11 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
         if let stateMachine = self.stateMachine {
             switch recognizer.state {
             case .Cancelled:
-                stateMachine.stop()
+                stateMachine.stopMoving()
             case .Ended:
-                stateMachine.stop()
+                stateMachine.stopMoving()
             default:
-                stateMachine.setCurrentPoint(currentPoint)
+                stateMachine.keepMoving(currentPoint)
             }
         }
     }

@@ -42,7 +42,7 @@ class ElasticMotionStateMachine {
             }
         }
     }
-    internal private(set) var criticalPoint = Float(0)
+    private var criticalPoint = Float(0)
     private var beginPoint = CGPointZero
     private var deltaPoint = CGPointZero
     private var totalMovingPoint = CGPointZero

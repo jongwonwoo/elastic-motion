@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0C35A1721CA501E500979B90 /* ElasticTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C35A1711CA501E500979B90 /* ElasticTransition.swift */; };
+		0C35A1741CA520E500979B90 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C35A1731CA520E500979B90 /* MenuViewController.swift */; };
 		0C6651CB1C981DEF008318C5 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C6651CA1C981DEF008318C5 /* CoreGraphics.framework */; };
 		0C6CF08F1C96C1C6005ACDCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF08E1C96C1C6005ACDCE /* AppDelegate.swift */; };
 		0C6CF0911C96C1C6005ACDCE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0901C96C1C6005ACDCE /* ViewController.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		0C35A1711CA501E500979B90 /* ElasticTransition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticTransition.swift; sourceTree = "<group>"; };
+		0C35A1731CA520E500979B90 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		0C6651CA1C981DEF008318C5 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		0C6CF08B1C96C1C6005ACDCE /* ElasticMotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElasticMotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C6CF08E1C96C1C6005ACDCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				0C6CF09A1C96C1C6005ACDCE /* Info.plist */,
 				0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */,
 				0C35A1711CA501E500979B90 /* ElasticTransition.swift */,
+				0C35A1731CA520E500979B90 /* MenuViewController.swift */,
 			);
 			path = ElasticMotion;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C6CF0911C96C1C6005ACDCE /* ViewController.swift in Sources */,
+				0C35A1741CA520E500979B90 /* MenuViewController.swift in Sources */,
 				0C6CF08F1C96C1C6005ACDCE /* AppDelegate.swift in Sources */,
 				0C35A1721CA501E500979B90 /* ElasticTransition.swift in Sources */,
 				0C6CF0B11C96CD6F005ACDCE /* ElasticMotionStateMachine.swift in Sources */,

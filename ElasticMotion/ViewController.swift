@@ -69,5 +69,10 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
             }
         }
     }
+    
+    @IBAction func unwindToMenu(unwindSegue: UIStoryboardSegue) {
+        print("unwindToMenu")
+    }
+    
 }
 

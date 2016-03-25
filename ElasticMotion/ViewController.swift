@@ -14,6 +14,8 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
     let threshold = Float(50.0)
     let menuViewWidth = Float(100.0)
     
+    var transition = ElasticTransition(transitionDuration: 1.0, presentingViewWidth: Float(100.0))
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

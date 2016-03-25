@@ -11,14 +11,14 @@ import UIKit
 class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
 
     var stateMachine:ElasticMotionStateMachine?
-    let criticalPoint = Float(50.0)
+    let threshold = Float(50.0)
     let menuViewWidth = Float(100.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, criticalPoint: criticalPoint, vibrationSec: 2.0)
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: threshold, vibrationSec: 2.0)
         self.stateMachine?.delegate = self
     }
 
@@ -34,7 +34,7 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
             switch state {
             case .MayOpen:
                 let newOriginX = self.view.frame.origin.x + deltaPoint.x
-                if newOriginX >= 0 && newOriginX < CGFloat(criticalPoint) {
+                if newOriginX >= 0 && newOriginX < CGFloat(threshold) {
                     self.view.center = CGPointMake(self.view.center.x + deltaPoint.x, self.view.center.y)
                 }
             case .MayClose:
@@ -43,11 +43,11 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
                     self.view.center = CGPointMake(self.view.center.x + deltaPoint.x, self.view.center.y)
                 }
             case .WillClose:
-                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(criticalPoint), self.view.center.y)
+                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(threshold), self.view.center.y)
             case .Closed:
                 self.view.center = CGPointMake(self.view.frame.width / 2, self.view.center.y)
             case .WillOpen:
-                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(criticalPoint), self.view.center.y)
+                self.view.center = CGPointMake(self.view.frame.width / 2 + CGFloat(threshold), self.view.center.y)
             case .Opened:
                 self.view.center = CGPointMake(self.view.frame.width / 2 + fullOpenedWidth, self.view.center.y)
             }
@@ -60,12 +60,10 @@ class ViewController: UIViewController, ElasticMotionStateMachineDelegate {
 
         if let stateMachine = self.stateMachine {
             switch recognizer.state {
-            case .Cancelled:
-                stateMachine.stopMoving()
-            case .Ended:
-                stateMachine.stopMoving()
-            default:
+            case .Began, .Changed:
                 stateMachine.keepMoving(currentPoint)
+            default:
+                stateMachine.stopMoving()
             }
         }
     }

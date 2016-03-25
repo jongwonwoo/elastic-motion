@@ -42,7 +42,7 @@ class ElasticMotionStateMachine {
             }
         }
     }
-    private var criticalPoint = Float(0)
+    private var threshold = Float(0)
     private var beginPoint = CGPointZero
     private var deltaPoint = CGPointZero
     private var totalMovingPoint = CGPointZero
@@ -51,9 +51,9 @@ class ElasticMotionStateMachine {
     var delegate: ElasticMotionStateMachineDelegate?
     
     // MARK: - public functions
-    init(_ direction: ElasticMotionDirection, criticalPoint:Float, vibrationSec:Double) {
+    init(_ direction: ElasticMotionDirection, threshold:Float, vibrationSec:Double) {
         self.direction = direction
-        self.criticalPoint = criticalPoint
+        self.threshold = threshold
         self.vibrationSec = vibrationSec
     }
     
@@ -92,25 +92,25 @@ class ElasticMotionStateMachine {
         self.totalMovingPoint = CGPointMake(self.totalMovingPoint.x + delta.x, self.totalMovingPoint.y + delta.y)
     }
     
-    private func isOverCriticalPoint() -> Bool {
+    private func isOverThreshold() -> Bool {
         var result = false
         
         switch self.direction {
         case .Left:
             //TODO
-            result = Float(self.totalMovingPoint.x) > self.criticalPoint
+            result = Float(self.totalMovingPoint.x) > self.threshold
         case .Right:
             if self.state == .MayOpen {
-                result = Float(self.totalMovingPoint.x) > self.criticalPoint
+                result = Float(self.totalMovingPoint.x) > self.threshold
             } else if self.state == .MayClose {
-                result = -(Float(self.totalMovingPoint.x)) > self.criticalPoint
+                result = -(Float(self.totalMovingPoint.x)) > self.threshold
             }
         case .Top:
             //TODO
-            result = Float(self.totalMovingPoint.y) > self.criticalPoint
+            result = Float(self.totalMovingPoint.y) > self.threshold
         case .Bottom:
             //TODO
-            result = Float(self.totalMovingPoint.y) > self.criticalPoint
+            result = Float(self.totalMovingPoint.y) > self.threshold
         }
         
         return result
@@ -119,14 +119,14 @@ class ElasticMotionStateMachine {
     // MARK: - state
     
     // 어디에서부터든 움직이기 시작하면 may*로 바뀐다.
-    // 시작 위치에서 cp 보다 움직이면 will*로 바뀐다.
+    // 시작 위치에서 threshold보다 더 움직이면 will*로 바뀐다.
     // will로 바뀌고 일정시간 후에는 did로 바뀐다.
     private func changeState() {
         switch self.state {
         case .Closed, .Opened:
             self.moveNextState()
         case .MayOpen, .MayClose:
-            if self.isOverCriticalPoint() {
+            if self.isOverThreshold() {
                 self.moveNextState()
                 
                 let time = dispatch_time(DISPATCH_TIME_NOW, Int64(self.vibrationSec * Double(NSEC_PER_SEC)))

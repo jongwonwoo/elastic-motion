@@ -11,11 +11,10 @@ import UIKit
 
 public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
 
-    var presentedViewController: UIViewController?
-    var presentingViewWidth: Float
+    let presentedViewController: UIViewController
+    let presentingViewWidth: Float
     
     let stateMachine:ElasticMotionStateMachine
-    
     let threshold: Float
     
     init(presentedViewController: UIViewController, presentingViewWidth: Float) {
@@ -31,8 +30,6 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
     }
     
     func handlePanGesture(recognizer: UIPanGestureRecognizer) {
-        guard let presentedViewController = self.presentedViewController else { return }
-        
         let currentPoint = recognizer.translationInView(presentedViewController.view)
         
         switch recognizer.state {
@@ -44,8 +41,6 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
     }
     
     func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state: ElasticMotionState, deltaPoint: CGPoint) {
-        guard let presentedViewController = self.presentedViewController else { return }
-
         if stateMachine.direction == ElasticMotionDirection.Right {
             let fullOpenedWidth = CGFloat(presentingViewWidth)
             switch state {

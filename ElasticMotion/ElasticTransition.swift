@@ -9,26 +9,69 @@
 import Foundation
 import UIKit
 
-public class ElasticTransition : NSObject, UIViewControllerAnimatedTransitioning {
-    var transitionDuration: NSTimeInterval
+public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
+
+    var presentedViewController: UIViewController?
     var presentingViewWidth: Float
     
-    init(transitionDuration: NSTimeInterval, presentingViewWidth: Float) {
-        self.transitionDuration = transitionDuration
+    let stateMachine:ElasticMotionStateMachine
+    
+    let threshold: Float
+    
+    init(presentedViewController: UIViewController, presentingViewWidth: Float) {
+        self.presentedViewController = presentedViewController
         self.presentingViewWidth = presentingViewWidth
-    }
-    
-    public func transitionDuration(transitionContext: UIViewControllerContextTransitioning?) -> NSTimeInterval {
-        return self.transitionDuration
-    }
-    
-    // This method can only  be a nop if the transition is interactive and not a percentDriven interactive transition.
-    public func animateTransition(transitionContext: UIViewControllerContextTransitioning) {
         
+        self.threshold = presentingViewWidth / 2
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: threshold, vibrationSec: 2.0)
+        
+        super.init()
+        
+        self.stateMachine.delegate = self
     }
     
-    // This is a convenience and if implemented will be invoked by the system when the transition context's completeTransition: method is invoked.
-    public func animationEnded(transitionCompleted: Bool) {
+    func handlePanGesture(recognizer: UIPanGestureRecognizer) {
+        guard let presentedViewController = self.presentedViewController else { return }
         
+        let currentPoint = recognizer.translationInView(presentedViewController.view)
+        
+        switch recognizer.state {
+        case .Began, .Changed:
+            stateMachine.keepMoving(currentPoint)
+        default:
+            stateMachine.stopMoving()
+        }
     }
+    
+    func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state: ElasticMotionState, deltaPoint: CGPoint) {
+        guard let presentedViewController = self.presentedViewController else { return }
+
+        if stateMachine.direction == ElasticMotionDirection.Right {
+            let fullOpenedWidth = CGFloat(presentingViewWidth)
+            switch state {
+            case .MayOpen:
+                let newOriginX = presentedViewController.view.frame.origin.x + deltaPoint.x
+                if newOriginX >= 0 && newOriginX < CGFloat(threshold) {
+                    presentedViewController.view.center = CGPointMake(presentedViewController.view.center.x + deltaPoint.x, presentedViewController.view.center.y)
+                }
+            case .MayClose:
+                let newOriginX = presentedViewController.view.frame.origin.x + deltaPoint.x
+                if newOriginX >= 0 && newOriginX < fullOpenedWidth {
+                    presentedViewController.view.center = CGPointMake(presentedViewController.view.center.x + deltaPoint.x, presentedViewController.view.center.y)
+                }
+            case .WillClose:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + CGFloat(threshold), presentedViewController.view.center.y)
+            case .Closed:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2, presentedViewController.view.center.y)
+            case .WillOpen:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + CGFloat(threshold), presentedViewController.view.center.y)
+            case .Opened:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + fullOpenedWidth, presentedViewController.view.center.y)
+            }
+        }
+        // TODO: other directions
+    }
+
+
+
 }

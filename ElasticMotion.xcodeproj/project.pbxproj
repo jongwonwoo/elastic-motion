@@ -17,6 +17,7 @@
 		0C6CF0991C96C1C6005ACDCE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C6CF0971C96C1C6005ACDCE /* LaunchScreen.storyboard */; };
 		0C6CF0A41C96C1C6005ACDCE /* ElasticMotionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0A31C96C1C6005ACDCE /* ElasticMotionTests.swift */; };
 		0C6CF0B11C96CD6F005ACDCE /* ElasticMotionStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */; };
+		0CA5BEAC1CAA8F8200369FFC /* ElasticMotionStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */; };
 		1D58488D4A7750E66184CC53 /* Pods_ElasticMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */; };
 /* End PBXBuildFile section */
 
@@ -298,6 +299,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C6CF0A41C96C1C6005ACDCE /* ElasticMotionTests.swift in Sources */,
+				0CA5BEAC1CAA8F8200369FFC /* ElasticMotionStateMachine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

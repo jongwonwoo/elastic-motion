@@ -22,7 +22,7 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
         self.presentingViewWidth = presentingViewWidth
         
         self.threshold = presentingViewWidth / 2
-        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: threshold, vibrationSec: 2.0)
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: threshold, vibrationSec: 0.5)
         
         super.init()
         

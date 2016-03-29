@@ -25,7 +25,7 @@ enum ElasticMotionState {
     case WillClose
 }
 
-protocol ElasticMotionStateMachineDelegate {
+protocol ElasticMotionStateMachineDelegate: class {
     func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state:ElasticMotionState, deltaPoint:CGPoint)
 }
 
@@ -48,7 +48,7 @@ class ElasticMotionStateMachine {
     private var totalMovingPoint = CGPointZero
     private var vibrationSec = Double(2)
     
-    var delegate: ElasticMotionStateMachineDelegate?
+    weak var delegate: ElasticMotionStateMachineDelegate?
     
     // MARK: - public functions
     init(_ direction: ElasticMotionDirection, threshold:Float, vibrationSec:Double) {

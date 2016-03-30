@@ -9,12 +9,12 @@
 import XCTest
 @testable import ElasticMotion
 
-class ElasticMotionStateMachineForRightDirectionTests: XCTestCase, ElasticMotionStateMachineDelegate {
+class ElasticMotionStateMachineForBottomDirectionTests: XCTestCase, ElasticMotionStateMachineDelegate {
     var stateMachine: ElasticMotionStateMachine?
     let vibrationSec = 0.5
     
     var expectation: XCTestExpectation?
-
+    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -30,7 +30,7 @@ class ElasticMotionStateMachineForRightDirectionTests: XCTestCase, ElasticMotion
     }
     
     func createStateMachine() {
-        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Bottom, threshold: 50.0, vibrationSec: vibrationSec)
         self.stateMachine?.delegate = self
     }
     
@@ -67,10 +67,10 @@ class ElasticMotionStateMachineForRightDirectionTests: XCTestCase, ElasticMotion
         self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.WillOpen.rawValue)
 
         if let stateMachine = self.stateMachine {
-            stateMachine.keepMoving(CGPointMake(0, 10))
-            stateMachine.keepMoving(CGPointMake(20, 10))
-            stateMachine.keepMoving(CGPointMake(30, 10))
-            stateMachine.keepMoving(CGPointMake(51, 10))
+            stateMachine.keepMoving(CGPointMake(0, 0))
+            stateMachine.keepMoving(CGPointMake(0, 20))
+            stateMachine.keepMoving(CGPointMake(0, 30))
+            stateMachine.keepMoving(CGPointMake(0, 51))
             
             waitForExpectationsWithTimeout(0.1) { error in
                 if let error = error {
@@ -84,10 +84,10 @@ class ElasticMotionStateMachineForRightDirectionTests: XCTestCase, ElasticMotion
         self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.Opened.rawValue)
         
         if let stateMachine = self.stateMachine {
-            stateMachine.keepMoving(CGPointMake(0, 10))
-            stateMachine.keepMoving(CGPointMake(20, 10))
-            stateMachine.keepMoving(CGPointMake(30, 10))
-            stateMachine.keepMoving(CGPointMake(51, 10))
+            stateMachine.keepMoving(CGPointMake(0, 0))
+            stateMachine.keepMoving(CGPointMake(0, 20))
+            stateMachine.keepMoving(CGPointMake(0, 30))
+            stateMachine.keepMoving(CGPointMake(0, 51))
             
             waitForExpectationsWithTimeout(vibrationSec * 1.01) { error in
                 if let error = error {

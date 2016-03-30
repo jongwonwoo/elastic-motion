@@ -112,8 +112,11 @@ class ElasticMotionStateMachine {
             //TODO
             result = Float(self.totalMovingPoint.y) > self.threshold
         case .Bottom:
-            //TODO
-            result = Float(self.totalMovingPoint.y) > self.threshold
+            if self.state == .MayOpen {
+                result = Float(self.totalMovingPoint.y) > self.threshold
+            } else if self.state == .MayClose {
+                result = -(Float(self.totalMovingPoint.y)) > self.threshold
+            }
         }
         
         return result

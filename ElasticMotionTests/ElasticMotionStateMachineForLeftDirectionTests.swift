@@ -15,14 +15,6 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
     
     var expectation: XCTestExpectation?
     
-    enum ExpectationStateOfOpeningToLeft: String {
-        case MayOpen
-        case WillOpen
-        case Opened
-        case MayOpenThenClosed
-        //TODO: MayClose, MayCloseThenOpened, WillClose, Closed
-    }
-    
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -41,8 +33,8 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
         self.stateMachine?.delegate = self
     }
     
-    func testOpenToLeftMayOpen() {
-        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToLeft.MayOpen.rawValue)
+    func testMayOpen() {
+        self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.MayOpen.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(100, 10))
@@ -55,8 +47,8 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
         }
     }
     
-    func testOpenToLeftMayOpenThenStop() {
-        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToLeft.MayOpenThenClosed.rawValue)
+    func testMayOpenThenStop() {
+        self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.MayOpenThenClosed.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(100, 10))
@@ -70,8 +62,8 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
         }
     }
     
-    func testOpenToLeftWillOpen() {
-        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToLeft.WillOpen.rawValue)
+    func testWillOpen() {
+        self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.WillOpen.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(100, 10))
@@ -87,8 +79,8 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
         }
     }
     
-    func testOpenToLeftOpened() {
-        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToLeft.Opened.rawValue)
+    func testOpened() {
+        self.expectation = expectationWithDescription(ElasticMotionStateMachineExpectationState.Opened.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(100, 10))
@@ -107,19 +99,19 @@ class ElasticMotionStateMachineForLeftDirectionTests: XCTestCase , ElasticMotion
     
     //MARK: elasticMotionStateMachine delegate
     func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state: ElasticMotionState, deltaPoint: CGPoint) {
-        if (self.expectation?.description == ExpectationStateOfOpeningToLeft.MayOpen.rawValue) {
+        if (self.expectation?.description == ElasticMotionStateMachineExpectationState.MayOpen.rawValue) {
             if (state == ElasticMotionState.MayOpen) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == ExpectationStateOfOpeningToLeft.MayOpenThenClosed.rawValue) {
+        } else if (self.expectation?.description == ElasticMotionStateMachineExpectationState.MayOpenThenClosed.rawValue) {
             if (state == ElasticMotionState.Closed) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == ExpectationStateOfOpeningToLeft.WillOpen.rawValue) {
+        } else if (self.expectation?.description == ElasticMotionStateMachineExpectationState.WillOpen.rawValue) {
             if (state == ElasticMotionState.WillOpen) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == ExpectationStateOfOpeningToLeft.Opened.rawValue) {
+        } else if (self.expectation?.description == ElasticMotionStateMachineExpectationState.Opened.rawValue) {
             if (state == ElasticMotionState.Opened) {
                 self.expectation?.fulfill()
             }

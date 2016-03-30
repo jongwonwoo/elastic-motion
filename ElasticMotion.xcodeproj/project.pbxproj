@@ -19,6 +19,8 @@
 		0C6CF0B11C96CD6F005ACDCE /* ElasticMotionStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */; };
 		0CA5BEAC1CAA8F8200369FFC /* ElasticMotionStateMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */; };
 		0CA5BEAE1CABC35B00369FFC /* ElasticMotionStateMachineForLeftDirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5BEAD1CABC35B00369FFC /* ElasticMotionStateMachineForLeftDirectionTests.swift */; };
+		0CA5BEB01CABC74700369FFC /* ElasticMotionStateMachineForBottomDirectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5BEAF1CABC74700369FFC /* ElasticMotionStateMachineForBottomDirectionTests.swift */; };
+		0CA5BEB21CABC7A800369FFC /* ElasticMotionStateMachineExpectationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CA5BEB11CABC7A800369FFC /* ElasticMotionStateMachineExpectationState.swift */; };
 		1D58488D4A7750E66184CC53 /* Pods_ElasticMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +50,8 @@
 		0C6CF0A51C96C1C6005ACDCE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C6CF0B01C96CD6F005ACDCE /* ElasticMotionStateMachine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticMotionStateMachine.swift; sourceTree = "<group>"; };
 		0CA5BEAD1CABC35B00369FFC /* ElasticMotionStateMachineForLeftDirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticMotionStateMachineForLeftDirectionTests.swift; sourceTree = "<group>"; };
+		0CA5BEAF1CABC74700369FFC /* ElasticMotionStateMachineForBottomDirectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticMotionStateMachineForBottomDirectionTests.swift; sourceTree = "<group>"; };
+		0CA5BEB11CABC7A800369FFC /* ElasticMotionStateMachineExpectationState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ElasticMotionStateMachineExpectationState.swift; sourceTree = "<group>"; };
 		29E3C592C970AED0CC199AEF /* Pods_ElasticMotion.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ElasticMotion.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52058931238E2067C9C03F25 /* Pods-ElasticMotion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.release.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.release.xcconfig"; sourceTree = "<group>"; };
 		9628AE6B5597EA8B7C155082 /* Pods-ElasticMotion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ElasticMotion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ElasticMotion/Pods-ElasticMotion.debug.xcconfig"; sourceTree = "<group>"; };
@@ -112,9 +116,11 @@
 		0C6CF0A21C96C1C6005ACDCE /* ElasticMotionTests */ = {
 			isa = PBXGroup;
 			children = (
+				0CA5BEAF1CABC74700369FFC /* ElasticMotionStateMachineForBottomDirectionTests.swift */,
 				0C6CF0A31C96C1C6005ACDCE /* ElasticMotionStateMachineForRightDirectionTests.swift */,
 				0C6CF0A51C96C1C6005ACDCE /* Info.plist */,
 				0CA5BEAD1CABC35B00369FFC /* ElasticMotionStateMachineForLeftDirectionTests.swift */,
+				0CA5BEB11CABC7A800369FFC /* ElasticMotionStateMachineExpectationState.swift */,
 			);
 			path = ElasticMotionTests;
 			sourceTree = "<group>";
@@ -302,7 +308,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C6CF0A41C96C1C6005ACDCE /* ElasticMotionStateMachineForRightDirectionTests.swift in Sources */,
+				0CA5BEB21CABC7A800369FFC /* ElasticMotionStateMachineExpectationState.swift in Sources */,
 				0CA5BEAC1CAA8F8200369FFC /* ElasticMotionStateMachine.swift in Sources */,
+				0CA5BEB01CABC74700369FFC /* ElasticMotionStateMachineForBottomDirectionTests.swift in Sources */,
 				0CA5BEAE1CABC35B00369FFC /* ElasticMotionStateMachineForLeftDirectionTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -18,23 +18,24 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
     let openToRight_MayOpen = "openToRight_MayOpen"
     let openToRight_WillOpen = "openToRight_WillOpen"
     let openToRight_Opened = "openToRight_Opened"
+    let openToRight_MayOpenThenStop = "openToRight_MayOpenThenStop"
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
-        
-        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
-        self.stateMachine?.delegate = self
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-        self.stateMachine?.delegate = nil
+        self.stateMachine = nil
         
         super.tearDown()
     }
     
     func testOpenToRightMayOpen() {
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
+        self.stateMachine?.delegate = self
+        
         self.expectation = expectationWithDescription(openToRight_MayOpen)
         
         if let stateMachine = self.stateMachine {
@@ -48,7 +49,28 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
         }
     }
     
+    func testOpenToRightMayOpenThenStop() {
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
+        self.stateMachine?.delegate = self
+        
+        self.expectation = expectationWithDescription(openToRight_MayOpenThenStop)
+        
+        if let stateMachine = self.stateMachine {
+            stateMachine.keepMoving(CGPointMake(0, 10))
+            stateMachine.stopMoving()
+            
+            waitForExpectationsWithTimeout(0.1) { error in
+                if let error = error {
+                    XCTFail("Error: \(error.localizedDescription)")
+                }
+            }
+        }
+    }
+    
     func testOpenToRightWillOpen() {
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
+        self.stateMachine?.delegate = self
+        
         self.expectation = expectationWithDescription(openToRight_WillOpen)
 
         if let stateMachine = self.stateMachine {
@@ -66,6 +88,9 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
     }
     
     func testOpenToRightOpened() {
+        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
+        self.stateMachine?.delegate = self
+        
         self.expectation = expectationWithDescription(openToRight_Opened)
         
         if let stateMachine = self.stateMachine {
@@ -94,6 +119,10 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
             }
         } else if (self.expectation?.description == openToRight_Opened) {
             if (state == ElasticMotionState.Opened) {
+                self.expectation?.fulfill()
+            }
+        } else if (self.expectation?.description == openToRight_MayOpenThenStop) {
+            if (state == ElasticMotionState.Closed) {
                 self.expectation?.fulfill()
             }
         }

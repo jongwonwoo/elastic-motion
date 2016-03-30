@@ -49,6 +49,10 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
                 if newOriginX >= 0 && newOriginX < CGFloat(threshold) {
                     presentedViewController.view.center = CGPointMake(presentedViewController.view.center.x + deltaPoint.x, presentedViewController.view.center.y)
                 }
+            case .WillOpen:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + CGFloat(threshold), presentedViewController.view.center.y)
+            case .Opened:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + fullOpenedWidth, presentedViewController.view.center.y)
             case .MayClose:
                 let newOriginX = presentedViewController.view.frame.origin.x + deltaPoint.x
                 if newOriginX >= 0 && newOriginX < fullOpenedWidth {
@@ -58,12 +62,31 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
                 presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + CGFloat(threshold), presentedViewController.view.center.y)
             case .Closed:
                 presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2, presentedViewController.view.center.y)
+            }
+        } else if stateMachine.direction == ElasticMotionDirection.Left {
+            let fullOpenedWidth = CGFloat(presentingViewWidth)
+            switch state {
+            case .MayOpen:
+                let newOriginX = presentedViewController.view.frame.origin.x + deltaPoint.x
+                if newOriginX <= 0 && -(newOriginX) < CGFloat(threshold) {
+                    presentedViewController.view.center = CGPointMake(presentedViewController.view.center.x + deltaPoint.x, presentedViewController.view.center.y)
+                }
             case .WillOpen:
-                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + CGFloat(threshold), presentedViewController.view.center.y)
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 - CGFloat(threshold), presentedViewController.view.center.y)
             case .Opened:
-                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 + fullOpenedWidth, presentedViewController.view.center.y)
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 - fullOpenedWidth, presentedViewController.view.center.y)
+            case .MayClose:
+                let newOriginX = presentedViewController.view.frame.origin.x + deltaPoint.x
+                if newOriginX <= 0 && -(newOriginX) < fullOpenedWidth {
+                    presentedViewController.view.center = CGPointMake(presentedViewController.view.center.x + deltaPoint.x, presentedViewController.view.center.y)
+                }
+            case .WillClose:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2 - CGFloat(threshold), presentedViewController.view.center.y)
+            case .Closed:
+                presentedViewController.view.center = CGPointMake(presentedViewController.view.frame.width / 2, presentedViewController.view.center.y)
             }
         }
+        
         // TODO: other directions
     }
 

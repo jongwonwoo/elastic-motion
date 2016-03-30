@@ -97,8 +97,11 @@ class ElasticMotionStateMachine {
         
         switch self.direction {
         case .Left:
-            //TODO
-            result = Float(self.totalMovingPoint.x) > self.threshold
+            if self.state == .MayOpen {
+                result = -(Float(self.totalMovingPoint.x)) > self.threshold
+            } else if self.state == .MayClose {
+                result = Float(self.totalMovingPoint.x) > self.threshold
+            }
         case .Right:
             if self.state == .MayOpen {
                 result = Float(self.totalMovingPoint.x) > self.threshold

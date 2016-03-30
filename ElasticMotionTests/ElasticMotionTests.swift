@@ -14,11 +14,13 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
     let vibrationSec = 0.5
     
     var expectation: XCTestExpectation?
-    
-    let openToRight_MayOpen = "openToRight_MayOpen"
-    let openToRight_WillOpen = "openToRight_WillOpen"
-    let openToRight_Opened = "openToRight_Opened"
-    let openToRight_MayOpenThenStop = "openToRight_MayOpenThenStop"
+
+    enum ExpectationStateOfOpeningToRight: String {
+        case MayOpen
+        case WillOpen
+        case Opened
+        case MayOpenThenClosed
+    }
     
     override func setUp() {
         super.setUp()
@@ -36,7 +38,7 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
         self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
         self.stateMachine?.delegate = self
         
-        self.expectation = expectationWithDescription(openToRight_MayOpen)
+        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToRight.MayOpen.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(0, 10))
@@ -53,7 +55,7 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
         self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
         self.stateMachine?.delegate = self
         
-        self.expectation = expectationWithDescription(openToRight_MayOpenThenStop)
+        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToRight.MayOpenThenClosed.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(0, 10))
@@ -71,7 +73,7 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
         self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
         self.stateMachine?.delegate = self
         
-        self.expectation = expectationWithDescription(openToRight_WillOpen)
+        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToRight.WillOpen.rawValue)
 
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(0, 10))
@@ -91,7 +93,7 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
         self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Right, threshold: 50.0, vibrationSec: vibrationSec)
         self.stateMachine?.delegate = self
         
-        self.expectation = expectationWithDescription(openToRight_Opened)
+        self.expectation = expectationWithDescription(ExpectationStateOfOpeningToRight.Opened.rawValue)
         
         if let stateMachine = self.stateMachine {
             stateMachine.keepMoving(CGPointMake(0, 10))
@@ -109,19 +111,19 @@ class ElasticMotionTests: XCTestCase, ElasticMotionStateMachineDelegate {
     
     
     func elasticMotionStateMachine(stateMachine: ElasticMotionStateMachine, didChangeState state: ElasticMotionState, deltaPoint: CGPoint) {
-        if (self.expectation?.description == openToRight_MayOpen) {
+        if (self.expectation?.description == ExpectationStateOfOpeningToRight.MayOpen.rawValue) {
             if (state == ElasticMotionState.MayOpen) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == openToRight_WillOpen) {
+        } else if (self.expectation?.description == ExpectationStateOfOpeningToRight.WillOpen.rawValue) {
             if (state == ElasticMotionState.WillOpen) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == openToRight_Opened) {
+        } else if (self.expectation?.description == ExpectationStateOfOpeningToRight.Opened.rawValue) {
             if (state == ElasticMotionState.Opened) {
                 self.expectation?.fulfill()
             }
-        } else if (self.expectation?.description == openToRight_MayOpenThenStop) {
+        } else if (self.expectation?.description == ExpectationStateOfOpeningToRight.MayOpenThenClosed.rawValue) {
             if (state == ElasticMotionState.Closed) {
                 self.expectation?.fulfill()
             }

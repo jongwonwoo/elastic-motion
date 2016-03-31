@@ -17,12 +17,12 @@ public class ElasticTransition : NSObject, ElasticMotionStateMachineDelegate {
     let stateMachine:ElasticMotionStateMachine
     let threshold: Float
     
-    init(presentedViewController: UIViewController, presentingViewWidth: Float) {
+    init(presentedViewController: UIViewController, presentingViewWidth: Float, direction: ElasticMotionDirection) {
         self.presentedViewController = presentedViewController
         self.presentingViewWidth = presentingViewWidth
         
         self.threshold = presentingViewWidth / 2
-        self.stateMachine = ElasticMotionStateMachine(ElasticMotionDirection.Top, threshold: threshold, vibrationSec: 0.5)
+        self.stateMachine = ElasticMotionStateMachine(direction, threshold: threshold, vibrationSec: 0.5)
         
         super.init()
         
